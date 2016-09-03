@@ -6,7 +6,7 @@ import java.io.*;
 
 public class CreatingConnectionToDB {
 	
-	public static String change = "ALTER TABLE table ADD actions int(1)";
+	public static String change = "ALTER TABLE youliker ADD actions int(1)";
 	boolean useSSL = false;
 	
     public void startConnection() {
