@@ -33,38 +33,39 @@ public class CreatingConnectionToDB {
             //По умолчанию пользователь - root, пароль - а нет его!
             connection = DriverManager.getConnection(url, "guest", "admin");
             statement = connection.createStatement();
+            CreatingRecordInTable();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            //позакрываем теперь все
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        } 
   }
     
     
     public static void CreatingRecordInTable(){
-    	String comand = "INSERT INTO Salespeople " +
-             "VALUES " + "('" + linkToSend + "', " + actions + ", '" + keyToSend + "', .12);";
+    	String comand = "INSERT INTO books " +
+             "VALUES " + "(1, '" + linkToSend + "', " + actions + ", '" + keyToSend + "');";
     	try {
 			statement.executeUpdate(comand);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
     	
     }
     
+  public void closeAnything(){
+    if (statement != null) {
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    if (connection != null) {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
     
 }

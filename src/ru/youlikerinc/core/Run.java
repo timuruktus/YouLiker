@@ -2,12 +2,14 @@ package ru.youlikerinc.core;
 
 import javax.swing.JFrame;
 
+import ru.youlikerinc.database.CreatingConnectionToDB;
 import ru.youlikerinc.realization.*;
 
 public class Run {
 	
 	static CreatingWindowAndCheckingConditions frame = new CreatingWindowAndCheckingConditions("YouLiker");
 	static OperationWithFiles operations = new OperationWithFiles();
+	static CreatingConnectionToDB CCTDB = new CreatingConnectionToDB();
 	
 		public static void main(String[] args){
 			frameSetting();
