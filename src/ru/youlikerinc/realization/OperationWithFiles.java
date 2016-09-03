@@ -7,7 +7,7 @@ import java.util.*;
 
 public class OperationWithFiles {
 
-	static String secretKey = generateRandomKey();
+	public static String secretKey = generateRandomKey();
 	
 public static void checkFileExists() {
 	String filedir = "res//Identifikator.txt";
