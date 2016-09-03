@@ -12,7 +12,7 @@ public class Run {
 		public static void main(String[] args) {
 			frameSetting();
 			OperationWithFiles.checkFileExists();
-			CreatingConnection startConnection = new CreatingConnection();
+			CreatingConnectionToDB startConnection = new CreatingConnectionToDB();
 			startConnection.startConnection();
 		}
 
