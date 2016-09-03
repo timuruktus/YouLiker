@@ -9,11 +9,10 @@ public class Run {
 	static CreatingWindowAndCheckingConditions frame = new CreatingWindowAndCheckingConditions("YouLiker");
 	static OperationWithFiles operations = new OperationWithFiles();
 	
-		public static void main(String[] args) {
+		public static void main(String[] args){
 			frameSetting();
 			OperationWithFiles.checkFileExists();
-			CreatingConnectionToDB startConnection = new CreatingConnectionToDB();
-			startConnection.startConnection();
+
 		}
 
 		private static void frameSetting(){

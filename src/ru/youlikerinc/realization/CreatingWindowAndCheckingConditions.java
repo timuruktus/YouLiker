@@ -1,5 +1,8 @@
 package ru.youlikerinc.realization;
 import javax.swing.*;
+
+import ru.youlikerinc.database.CreatingConnectionToDB;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -57,6 +60,10 @@ public class CreatingWindowAndCheckingConditions extends JFrame {
 					JOptionPane.showMessageDialog(null, "Пожалуйста, выберите необходимую операцию и введите ссылку");
 				}
 				else if (currentChoise != null && link != null){ //Если все верно
+					CreatingConnectionToDB.setLinkToSend(link.getText());
+					CreatingConnectionToDB.setActions(action);
+					CreatingConnectionToDB startConnection = new CreatingConnectionToDB();
+					startConnection.startConnection();
 				JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
 				link.setText(" ");
 				}
