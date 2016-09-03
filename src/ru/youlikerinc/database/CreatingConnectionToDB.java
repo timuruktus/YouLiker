@@ -1,24 +1,28 @@
 package ru.youlikerinc.database;
 
 import java.sql.* ;
-import com.mysql.jdbc.Driver ;
-import java.io.*;
 
 public class CreatingConnectionToDB {
 	
-	public static String change = "CREATE TABLE `books` (" +
-            "  `id` int(11) NOT NULL auto_increment," +
-            "  `link` varchar(11) default NULL," +
-            "  `actions` int(1) default NULL," +
-            "  `secretKey` double default NULL," +
-            "  PRIMARY KEY  (`id`)" +
-            ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+	private static String linkToSend;
+	private static int actions;
+	private static String keyToSend;
+	Connection connection = null;
+    static Statement statement = null;
+	
+	public static void setKeyToSend(String keyToSend) {
+		CreatingConnectionToDB.keyToSend = keyToSend;
+	}
+
+	public static void setLinkToSend(String linkToSend) {
+		CreatingConnectionToDB.linkToSend = linkToSend;
+	}
+
+	public static void setActions(int actions) {
+		CreatingConnectionToDB.actions = actions;
+	}
 	
     public void startConnection() {
-    	
-    	
-    	Connection connection = null;
-        Statement statement = null;
         try {
             //Загружаем драйвер
             Class.forName("com.mysql.jdbc.Driver");
@@ -29,8 +33,6 @@ public class CreatingConnectionToDB {
             //По умолчанию пользователь - root, пароль - а нет его!
             connection = DriverManager.getConnection(url, "guest", "admin");
             statement = connection.createStatement();
-            //Обратите внимание, что создаем базу с помощью executeUpdate(). Об этом мы поговорим немного позже.
-            statement.executeUpdate(change);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -50,9 +52,17 @@ public class CreatingConnectionToDB {
                 }
             }
         }
-    }
+  }
     
-    public void CreatingRecordInTable(){
+    
+    public static void CreatingRecordInTable(){
+    	String comand = "INSERT INTO Salespeople " +
+             "VALUES " + "('" + linkToSend + "', " + actions + ", '" + keyToSend + "', .12);";
+    	try {
+			statement.executeUpdate(comand);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     	
     }
     
