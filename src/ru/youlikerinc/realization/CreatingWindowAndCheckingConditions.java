@@ -65,7 +65,7 @@ public class CreatingWindowAndCheckingConditions extends JFrame {
 					CreatingConnectionToDB startConnection = new CreatingConnectionToDB();
 					startConnection.startConnection();
 				JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
-				link.setText(" ");
+				link.setText("");
 				}
 			}
 			
