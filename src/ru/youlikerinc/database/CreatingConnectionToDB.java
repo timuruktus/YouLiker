@@ -45,7 +45,6 @@ public class CreatingConnectionToDB {
             //ѕо умолчанию пользователь - root, пароль - а нет его!
             connection = DriverManager.getConnection(url, "guest", "admin");
             statement = connection.createStatement();
-            CreatingRecordInTable();
         } catch (Exception e) {
             e.printStackTrace();
         } 
@@ -79,5 +78,15 @@ public class CreatingConnectionToDB {
         }
     }
 }
-    
+  
+  public void afterClosingProgram() throws SQLException{
+	  		setKeyToSend();
+				  String deleteOurRow = "DELETE FROM books WHERE secretKey = " + keyToSend + ";";
+				  statement.executeUpdate(deleteOurRow);
+				  closeAnything();
+
+			  }
+		  
+  
 }
+
