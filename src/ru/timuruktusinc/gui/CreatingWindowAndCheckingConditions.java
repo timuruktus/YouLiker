@@ -1,4 +1,4 @@
-package ru.youlikerinc.realization;
+package ru.timuruktusinc.gui;
 import javax.swing.*;
 
 import ru.youlikerinc.database.CreatingConnectionToDB;
@@ -62,8 +62,7 @@ public class CreatingWindowAndCheckingConditions extends JFrame {
 				else if (currentChoise != null && link != null){ //Если все верно
 					CreatingConnectionToDB.setLinkToSend(link.getText());
 					CreatingConnectionToDB.setActions(action);
-					CreatingConnectionToDB startConnection = new CreatingConnectionToDB();
-					startConnection.startConnection();
+					CreatingConnectionToDB.CreatingRecordInTable();
 				JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
 				link.setText("");
 				}

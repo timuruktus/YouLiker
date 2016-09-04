@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
+
 public class OperationWithFiles {
 
-	static String secretKey = generateRandomKey();
+	public static int secretKey = generateRandomKey();
 	
 public static void checkFileExists() {
 	String filedir = "res//Identifikator.txt";
@@ -21,15 +22,16 @@ public static void checkFileExists() {
 	        File file = new File("res//Identifikator.txt");
 	        write(file);
 	      }
+	
 }
 		
 		
 		// Generating random key...
 		// It needs then, to just 1 user can post his request only once at one day 
 		// (DB clears once at day)
- private static String generateRandomKey(){
+ private static int generateRandomKey(){
 	 Random randomnum = new Random();
-	 return secretKey = randomnum.nextInt(1000000) + "." + randomnum.nextInt(1000);
+	 return secretKey = randomnum.nextInt(10000000);
  }
  
  
