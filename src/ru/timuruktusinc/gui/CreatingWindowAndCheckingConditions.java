@@ -62,8 +62,12 @@ public class CreatingWindowAndCheckingConditions extends JFrame {
 				else if (currentChoise != null && link != null){ //Если все верно
 					CreatingConnectionToDB.setLinkToSend(link.getText());
 					CreatingConnectionToDB.setActions(action);
-					CreatingConnectionToDB.CreatingRecordInTable();
-				JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
+					try {
+						CreatingConnectionToDB.CreatingRecordInTable();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
 				link.setText("");
 				}
 			}

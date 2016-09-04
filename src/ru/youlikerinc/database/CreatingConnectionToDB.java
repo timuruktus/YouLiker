@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.* ;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class CreatingConnectionToDB {
 	
 	private static String linkToSend;
@@ -51,15 +53,17 @@ public class CreatingConnectionToDB {
   }
     
     
-    public static void CreatingRecordInTable(){
-    	String comand = "INSERT INTO books " +
+    public static void CreatingRecordInTable() throws SQLException{
+			String checkIfRecordExists = "SELECT * FROM books WHERE secretKey = " + keyToSend + " OR link = " + linkToSend + ";";
+			if(statement.executeQuery(checkIfRecordExists).equals(null)){
+				JOptionPane.showMessageDialog(null, "Пожалуйста, подождите 24 часа, ваша ссылка уже занята");
+			}
+			else{
+		String comand = "INSERT INTO books " +
              "VALUES " + "('" + linkToSend + "', " + actions + ", '" + keyToSend + "');";
-    	try {
 			statement.executeUpdate(comand);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-    	
+			JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
+			}
     }
     
   public void closeAnything(){
