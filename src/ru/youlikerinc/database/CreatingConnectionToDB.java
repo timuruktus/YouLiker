@@ -40,11 +40,10 @@ public class CreatingConnectionToDB {
         	CreatingConnectionToDB.setKeyToSend();
             //Загружаем драйвер
             Class.forName("com.mysql.jdbc.Driver");
-            //Нужно создать подключение к БД. У MySQL обязательно есть системная база,
-            //к ней и будем создавать соединение.
+            //Нужно создать подключение к БД. 
             String url = "jdbc:mysql://localhost/youliker2" +
                     "?characterEncoding=utf8";
-            //По умолчанию пользователь - root, пароль - а нет его!
+            
             connection = DriverManager.getConnection(url, "guest", "admin");
             statement = connection.createStatement();
         } catch (Exception e) {
@@ -54,16 +53,20 @@ public class CreatingConnectionToDB {
     
     
     public static void CreatingRecordInTable() throws SQLException{
-			String checkIfRecordExists = "SELECT * FROM books WHERE secretKey = " + keyToSend + " OR link = " + linkToSend + ";";
-			if(statement.executeQuery(checkIfRecordExists).equals(null)){
-				JOptionPane.showMessageDialog(null, "Пожалуйста, подождите 24 часа, ваша ссылка уже занята");
+			
+			ResultSet rs = statement.executeQuery("SELECT * FROM books WHERE secretKey = " + keyToSend + " OR link = " + linkToSend + ";");
+
+			if(rs.next() == false || rs.getInt("secretKey") == 0 || rs.getString("link") == null){
+				String comand = "INSERT INTO books " +
+			             "VALUES " + "('" + linkToSend + "', " + actions + ", '" + keyToSend + "');";
+						statement.executeUpdate(comand);
+						JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
 			}
 			else{
-		String comand = "INSERT INTO books " +
-             "VALUES " + "('" + linkToSend + "', " + actions + ", '" + keyToSend + "');";
-			statement.executeUpdate(comand);
-			JOptionPane.showMessageDialog(null, "Ваш запрос был отправлен!");
+		
+			JOptionPane.showMessageDialog(null, "Пожалуйста, подождите 24 часа, ваша ссылка уже занята");
 			}
+			
     }
     
   public void closeAnything(){
